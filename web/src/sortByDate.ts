@@ -1,6 +1,6 @@
-import { PostInterface } from './PostInterface';
+import { Post } from './Interfaces';
 
-export function sortByDate(a: PostInterface, b: PostInterface) {
+export function sortByDate(a: Post, b: Post) {
   if (a.publishedAt.getTime() > b.publishedAt.getTime()) {
     return -1;
   }

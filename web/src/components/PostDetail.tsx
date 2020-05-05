@@ -1,25 +1,24 @@
 import React, { useEffect } from 'react';
-import { PostInterface } from '../PostInterface';
+import { Post } from '../Interfaces';
 import ReactMarkdown from 'react-markdown';
 
 interface PostDetailProps {
-  post: PostInterface;
+  post: Post;
   onClose: () => void;
 }
 
 export function PostDetail({ post, onClose }: PostDetailProps) {
-  function onKeyDown(e: KeyboardEvent) {
-    if (e.key === 'Escape') {
-      onClose();
-    }
-  }
-
   useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    }
     window.addEventListener('keydown', onKeyDown);
     return () => {
       window.removeEventListener('keydown', onKeyDown);
     };
-  }, [onKeyDown]);
+  });
 
   return (
     <div className="post-detail">
