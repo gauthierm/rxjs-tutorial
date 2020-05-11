@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 export function terrible(
   failureRate = 0.5,
-  minimumDelayMs = 1000,
-  maximumDelayMs = 6000
+  minimumDelayMs = 100,
+  maximumDelayMs = 600
 ) {
   return function terribleMiddleware(
     _: Request,
