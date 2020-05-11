@@ -1,8 +1,8 @@
 import React from 'react';
-import { Post } from '../Interfaces';
+import { PostIndex } from '../Interfaces';
 
 interface PostItemProps {
-  post: Post;
+  post: PostIndex;
   onClick: () => void;
 }
 

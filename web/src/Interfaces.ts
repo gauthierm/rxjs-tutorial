@@ -3,10 +3,13 @@ export interface Author {
   name: string;
 }
 
-export interface Post {
+export interface PostIndex {
   id: string;
   title: string;
-  body: string;
   publishedAt: Date;
   author: Author;
+}
+
+export interface Post extends PostIndex {
+  body: string;
 }

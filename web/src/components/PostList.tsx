@@ -1,9 +1,9 @@
 import React from 'react';
 import { PostItem } from './PostItem';
-import { Post } from '../Interfaces';
+import { PostIndex } from '../Interfaces';
 
 interface PostListProps {
-  posts: Post[];
+  posts: PostIndex[];
   onSelectPost: (postId: string) => void;
 }
 

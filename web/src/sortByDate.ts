@@ -1,6 +1,9 @@
 import { Post } from './Interfaces';
 
-export function sortByDate(a: Post, b: Post) {
+export function sortByDate(
+  a: Pick<Post, 'publishedAt'>,
+  b: Pick<Post, 'publishedAt'>
+) {
   if (a.publishedAt.getTime() > b.publishedAt.getTime()) {
     return -1;
   }

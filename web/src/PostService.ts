@@ -6,12 +6,15 @@ import { Author } from './Interfaces';
 const API = `${process.env.REACT_APP_API_SERVER}/posts`;
 const MAX_RETRIES = 2;
 
-interface RawPost {
+interface RawPostIndex {
   id: string;
   title: string;
-  body: string;
   publishedAt: string;
   author: Author;
+}
+
+interface RawPost extends RawPostIndex {
+  body: string;
 }
 
 interface PostError {
@@ -23,11 +26,11 @@ interface ApiError {
   message: string;
 }
 
-export function getPosts() {
-  return fromFetch(API).pipe(
+function fetchObservable<T>(url: string) {
+  return fromFetch(url).pipe(
     switchMap((response) => {
       if (response.ok) {
-        return from(response.json() as Promise<RawPost[]>);
+        return from(response.json() as Promise<T>);
       }
       return from(response.json() as Promise<ApiError>).pipe(
         map((error) => {
@@ -45,4 +48,13 @@ export function getPosts() {
       });
     })
   );
+}
+
+export function getPost(id: string) {
+  const url = `${API}/${id}`;
+  return fetchObservable<RawPost>(url);
+}
+
+export function getPosts() {
+  return fetchObservable<RawPostIndex[]>(API);
 }
